@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { getAllGames } from '../fake-api';
 
 @Component({
   selector: 'nx-shopping-system-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'store';
+  title = 'Board Game Hoard';
+  games = getAllGames();
 }
