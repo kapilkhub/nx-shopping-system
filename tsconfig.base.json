@@ -18,6 +18,9 @@
     "paths": {
       "@nx-shopping-system/store/shared-ui": [
         "libs/store/shared-ui/src/index.ts"
+      ],
+      "@nx-shopping-system/store/util-formatters": [
+        "libs/store/util-formatters/src/index.ts"
       ]
     }
   },
