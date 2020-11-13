@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import {map} from 'rxjs/operators'
+import {map, switchMap} from 'rxjs/operators'
+import { HttpClient } from '@angular/common/http';
+import {formatRating} from '@nx-shopping-system/store/util-formatters'
 
 @Component({
   selector: 'nx-shopping-system-game-detail',
@@ -10,11 +12,14 @@ import {map} from 'rxjs/operators'
 export class GameDetailComponent implements OnInit {
 
  
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
-  gameId$ = this.route.paramMap.pipe(
-    map((params: ParamMap) => params.get('id'))
+  game$ = this.route.paramMap.pipe(
+    map((params: ParamMap) => params.get('id')),
+    switchMap(id => this.http.get<any>(`/api/games/${id}`))
   );
+
+  formatRating = formatRating;
 
   ngOnInit(): void {
   }

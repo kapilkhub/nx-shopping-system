@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { StoreSharedUiModule } from '@nx-shopping-system/store/shared-ui';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     StoreSharedUiModule,
+    HttpClientModule,
     RouterModule.forRoot(
       [
         {
