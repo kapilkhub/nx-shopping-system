@@ -1,15 +1,11 @@
 <nx-shopping-system-header title="Board Games!"></nx-shopping-system-header>
 <div class="container">
   <div class="games-layout">
-    <mat-card class="game-card" *ngFor="let game of games">
+    <mat-card class="game-card" *ngFor="let game of games"  [routerLink]="['/game', game.id]">
       <mat-card-header class="center-content">
         <mat-card-title>{{ game.name }}</mat-card-title>
       </mat-card-header>
-      <img
-        mat-card-image
-        src="{{ game.image }}"
-        alt="Photo of board game {{ game.name }}"
-      />
+      <img mat-card-image src="{{ game.image }}" alt="Photo of board game {{ game.name }}" />
       <mat-card-content>
         <p>
           {{ game.description }}
@@ -20,4 +16,5 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <router-outlet></router-outlet>
 </div>
