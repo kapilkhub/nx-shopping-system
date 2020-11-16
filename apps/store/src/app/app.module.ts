@@ -6,6 +6,11 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { StoreSharedUiModule } from '@nx-shopping-system/store/shared-ui';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,9 +28,22 @@ import { HttpClientModule } from '@angular/common/http';
             ),
         },
       ],
-      { initialNavigation: 'enabled'}
+      { initialNavigation: 'enabled' }
     ),
     MatCardModule,
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: !environment.production ? [] : [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
+    EffectsModule.forRoot([]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
